@@ -1,0 +1,40 @@
+<h2 class="mt-4">Listado de Posts</h2>
+<p class="mb-4">Nº de posts: {{ num_posts }}</p>
+<div class="text-right">
+    <label for="num">Posts/Página
+        <select class="form-control" ng-change="ppeChanged()" ng-model="data.unit">
+            <option ng-repeat="item in units" ng-value="item.id">{{item.label}}</option>
+        </select>
+    </label>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Título</th>
+        <th scope="col">Cuerpo</th>
+        <th scope="col">Etiquetas</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="post in posts">
+        <td>{{ post.id }}</td>
+        <td>{{ post.titulo }}</td>
+        <td>{{ post.cuerpo }}</td>
+        <td>{{ post.etiquetas }}</td>
+    </tr>
+    </tbody>
+</table>
+<nav aria-label="Page navigation example" ng-if="pages.length > 1">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" ng-class="actually_page == 1 || actually_page == null ? 'disabled' : ''" ng-click="getPage(actually_page - 1)">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+        </li>
+        <li class="page-item" ng-repeat="np in pages" ng-class="actually_page === np ? 'active' : ''">
+            <a class="page-link" ng-click="getPage(np)" href="#">{{np}}</a>
+        </li>
+        <li class="page-item"ng-class="actually_page == pages.length ? 'disabled' : ''" ng-click="getPage(actually_page + 1)">
+            <a class="page-link" href="#">Siguiente</a>
+        </li>
+    </ul>
+</nav>
