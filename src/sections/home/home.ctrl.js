@@ -12,6 +12,15 @@ myApp.controller('HomeController', ['$scope', '$http', 'myService', function ($s
         {'id': 50, 'label': '50'},
     ];
 
+    // New Code
+    myService.getCount().then(function(data) {
+        $scope.num_posts = data.data.response;
+    });
+
+    
+
+    // Old Code
+/*
     $scope.actually_page = 1;
 
     myService.plist($scope.data.unit, 1).then(function (data) {
@@ -39,8 +48,7 @@ myApp.controller('HomeController', ['$scope', '$http', 'myService', function ($s
 
         $scope.actually_page = np;
     }
-
-
+*/
 
 
 
