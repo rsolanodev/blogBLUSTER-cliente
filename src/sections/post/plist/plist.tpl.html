@@ -1,0 +1,53 @@
+<h2 class="mt-4">Listado de Posts</h2>
+<p class="mb-4">Nº de posts: {{ num_posts }}</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-left">
+                <li class="page-item" ng-class="{'active':(actually_page==p)}" ng-repeat="p in pages">
+                    <a class="page-link" href="/DAW/blogbuster/post/plist/{{rpp}}/{{p}}">{{p}}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                Posts/Página
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/DAW/blogbuster/post/plist/5/{{actually_page}}">5</a>
+                <a class="dropdown-item" href="/DAW/blogbuster/post/plist/10/{{actually_page}}">10</a>
+                <a class="dropdown-item" href="/DAW/blogbuster/post/plist/25/{{actually_page}}">25</a>
+                <a class="dropdown-item" href="/DAW/blogbuster/post/plist/50/{{actually_page}}">50</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Título</th>
+        <th scope="col">Cuerpo</th>
+        <th scope="col">Etiquetas</th>
+        <th scope="col">Tools</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="post in posts">
+        <td>{{ post.id }}</td>
+        <td>{{ post.titulo }}</td>
+        <td>{{ post.cuerpo.substring(1, 185) }}...</td>
+        <td>{{ post.etiquetas }}</td>
+        <td class="text-center">
+            <a href="/DAW/blogbuster/post/view/{{post.id}}" class="d-inline">👁️‍🗨️</a>
+            <a href="#" class="d-inline">✏</a>
+            <a href="#" class="d-inline">❌</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
