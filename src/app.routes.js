@@ -11,6 +11,9 @@ myApp.config(function ($routeProvider) {
     }).when('/post/view/:id', {
         templateUrl: 'src/sections/post/view/view.tpl.html',
         controller: 'PostViewController'
+    }).when('/post/remove/:id', {
+        templateUrl: 'src/sections/post/remove/remove.tpl.html',
+        controller: 'PostRemoveController'
     }).otherwise({
         redirectTo: '/'
     });

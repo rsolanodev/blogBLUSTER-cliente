@@ -6,45 +6,30 @@ myApp.factory('myService', ['$http', '$q', function ($http, $q) {
         getPage: function (ppe, np) {
             return $http.get(`http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}`);
         },
-        getPost: function(id) {
+        getPost: function (id) {
             return $http.get(`http://localhost:8081/blogbuster/json?ob=post&op=get&id=${id}`);
         },
-        pagination: function (num_posts, ppe, paginaActual) {
+        removePost: function(id) {
+            return $http.get(`http://localhost:8081/blogbuster/json?ob=post&op=remove&id=${id}`);
+        },
+        pagination: function (num_posts, ppe, actually_page, range) {
+            let num_pages = Math.ceil(num_posts / ppe);
             let pages = [];
+            range++;
 
-            let numPaginas = Math.ceil(num_posts / ppe);
-
-            for (let i = 1; i <= numPaginas; i++) {
-                if (i === 1) {
+            for (let i = 1; i <= num_pages; i++) {
+                if (i == 1) {
                     pages.push(i);
-                }
-
-                if (i === paginaActual && i - 2 > 1) {
-                    pages.push(i - 2);
-                }
-
-                if (i === paginaActual && i - 1 > 1) {
-                    pages.push(i - 1);
-                }
-
-                if (i === paginaActual && i !== 1) {
+                } else if (i > (actually_page - range) && i < (actually_page + range)) {
                     pages.push(i);
-                }
-
-                if (i === paginaActual && i + 1 < numPaginas) {
-                    pages.push(i + 1);
-                }
-
-                if (i === paginaActual && i + 2 < numPaginas) {
-                    pages.push(i + 2);
-                }
-
-                if (i === numPaginas && i !== 1 && i !== paginaActual) {
+                } else if (i == num_pages) {
                     pages.push(i);
+                } else if (i == (actually_page - range) || i == (actually_page + range)) {
+                    pages.push('...');
                 }
             }
 
             return pages;
-        }
+        },
     }
 }]);

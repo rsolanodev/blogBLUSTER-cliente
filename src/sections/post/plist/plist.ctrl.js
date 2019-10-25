@@ -8,6 +8,8 @@ myApp.controller('PostListController', ['$scope', '$http', 'myService', '$routeP
 
     myService.getCount().then(function (data) {
         $scope.num_posts = data.data.response;
-        $scope.pages = myService.pagination($scope.num_posts, $scope.rpp, $scope.actually_page);
+        $scope.pages = myService.pagination($scope.num_posts, $scope.rpp, $scope.actually_page, 2);
     });
+
+    $scope.page_name = "plist"
 }]);

@@ -5,7 +5,7 @@ myApp.controller('PostViewController', ['$scope', '$http', 'myService', '$routeP
         $scope.post = data.data.response;
     });
 
-    $scope.doTheBack = function() {
+    $scope.back = function() {
         window.history.back();
     };
 }]);

@@ -3,10 +3,13 @@
 
 <div class="row">
     <div class="col-md-6">
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Paginación">
             <ul class="pagination justify-content-left">
-                <li class="page-item" ng-class="{'active':(actually_page==p)}" ng-repeat="p in pages">
-                    <a class="page-link" href="./post/plist/{{rpp}}/{{p}}">{{p}}</a>
+                <li class="page-item" ng-class="{'active':(actually_page==p)}" ng-disabled="p == '...'"
+                    ng-repeat="p in pages track by $index">
+                    <a class="page-link" ng-if="p != '...'" href="./post/plist/{{ rpp }}/{{ p }}">{{ p }}
+                    </a>
+                    <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                 </li>
             </ul>
         </nav>
@@ -14,7 +17,7 @@
     <div class="col-md-6 text-right">
         <div class="dropdown">
             <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                aria-haspopup="true" aria-expanded="false">
                 Posts/Página
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -29,25 +32,27 @@
 
 <table class="table">
     <thead>
-    <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Título</th>
-        <th scope="col">Cuerpo</th>
-        <th scope="col">Etiquetas</th>
-        <th scope="col">Tools</th>
-    </tr>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Título</th>
+            <th scope="col">Cuerpo</th>
+            <th scope="col">Etiquetas</th>
+            <th scope="col">Tools</th>
+        </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="post in posts">
-        <td>{{ post.id }}</td>
-        <td>{{ post.titulo }}</td>
-        <td>{{ post.cuerpo.substring(1, 185) }}...</td>
-        <td>{{ post.etiquetas }}</td>
-        <td class="text-center">
-            <a href="/post/view/{{post.id}}" class="d-inline">👁️‍🗨️</a>
-            <a href="#" class="d-inline">✏</a>
-            <a href="#" class="d-inline">❌</a>
-        </td>
-    </tr>
+        <tr ng-repeat="post in posts">
+            <td>{{ post.id }}</td>
+            <td>{{ post.titulo }}</td>
+            <td>{{ post.cuerpo.substring(0, 185) }}...</td>
+            <td>{{ post.etiquetas }}</td>
+            <td class="text-center">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class="btn btn-light" href="./post/view/{{ post.id }}"><i class="fas fa-eye"></i></a>
+                    <a class="btn btn-light" href="./post/edit/{{ post.id }}"><i class="fas fa-edit"></i></a>
+                    <a class="btn btn-light" href="./post/remove/{{ post.id }}"><i class="fas fa-trash-alt"></i></a>
+                </div>
+            </td>
+        </tr>
     </tbody>
 </table>

@@ -1,4 +1,14 @@
-<a href="#" ng-click="back()">← Back</a>
+
+<div class="row">
+    <div class="col-md-6">
+        <a href="#" ng-click="back()">← Back</a>
+    </div>
+    <div class="col-md-6 text-right">
+        <span>¿Estás seguro de eliminar este registro?</span>
+        <button class="btn btn-danger ml-4" ng-click="remove()">Confirmar</button>
+    </div>
+</div>
+
 <table class="table mt-4">
     <tr>
         <th>Id</th>
