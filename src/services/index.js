@@ -9,8 +9,17 @@ myApp.factory('myService', ['$http', '$q', function ($http, $q) {
         getPost: function (id) {
             return $http.get(`http://localhost:8081/blogbuster/json?ob=post&op=get&id=${id}`);
         },
-        removePost: function(id) {
+        removePost: function (id) {
             return $http.get(`http://localhost:8081/blogbuster/json?ob=post&op=remove&id=${id}`);
+        },
+        updatePost: function (response) {
+            return $http({
+                url: 'http://localhost:8081/blogbuster/json?ob=post&op=update',
+                method: "POST",
+                data: {
+                    data: response
+                }
+            });
         },
         pagination: function (num_posts, ppe, actually_page, range) {
             let num_pages = Math.ceil(num_posts / ppe);
