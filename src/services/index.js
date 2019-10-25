@@ -1,13 +1,13 @@
 myApp.factory('myService', ['$http', '$q', function ($http, $q) {
     return {
         getCount: function () {
-            return $http.get("http://localhost:8084/blogbuster/json?ob=post&op=getcount")
+            return $http.get("http://localhost:8081/blogbuster/json?ob=post&op=getcount")
         },
         getPage: function (ppe, np) {
-            return $http.get(`http://localhost:8084/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}`);
+            return $http.get(`http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}`);
         },
         getPost: function(id) {
-            return $http.get(`http://localhost:8084/blogbuster/json?ob=post&op=get&id=${id}`);
+            return $http.get(`http://localhost:8081/blogbuster/json?ob=post&op=get&id=${id}`);
         },
         pagination: function (num_posts, ppe, paginaActual) {
             let pages = [];

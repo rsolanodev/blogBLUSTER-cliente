@@ -6,7 +6,7 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-left">
                 <li class="page-item" ng-class="{'active':(actually_page==p)}" ng-repeat="p in pages">
-                    <a class="page-link" href="/DAW/blogbuster/post/plist/{{rpp}}/{{p}}">{{p}}</a>
+                    <a class="page-link" href="./post/plist/{{rpp}}/{{p}}">{{p}}</a>
                 </li>
             </ul>
         </nav>
@@ -18,10 +18,10 @@
                 Posts/Página
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/DAW/blogbuster/post/plist/5/{{actually_page}}">5</a>
-                <a class="dropdown-item" href="/DAW/blogbuster/post/plist/10/{{actually_page}}">10</a>
-                <a class="dropdown-item" href="/DAW/blogbuster/post/plist/25/{{actually_page}}">25</a>
-                <a class="dropdown-item" href="/DAW/blogbuster/post/plist/50/{{actually_page}}">50</a>
+                <a class="dropdown-item" href="./post/plist/5/{{actually_page}}">5</a>
+                <a class="dropdown-item" href="./post/plist/10/{{actually_page}}">10</a>
+                <a class="dropdown-item" href="./post/plist/25/{{actually_page}}">25</a>
+                <a class="dropdown-item" href="./post/plist/50/{{actually_page}}">50</a>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@
         <td>{{ post.cuerpo.substring(1, 185) }}...</td>
         <td>{{ post.etiquetas }}</td>
         <td class="text-center">
-            <a href="/DAW/blogbuster/post/view/{{post.id}}" class="d-inline">👁️‍🗨️</a>
+            <a href="/post/view/{{post.id}}" class="d-inline">👁️‍🗨️</a>
             <a href="#" class="d-inline">✏</a>
             <a href="#" class="d-inline">❌</a>
         </td>
