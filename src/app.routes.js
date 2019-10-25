@@ -17,6 +17,9 @@ myApp.config(function ($routeProvider) {
     }).when('/post/edit/:id', {
         templateUrl: 'src/sections/post/edit/edit.tpl.html',
         controller: 'PostEditController'
+    }).when('/post/new', {
+        templateUrl: 'src/sections/post/new/new.tpl.html',
+        controller: 'PostNewController'
     }).otherwise({
         redirectTo: '/'
     });
