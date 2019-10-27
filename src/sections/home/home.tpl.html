@@ -5,9 +5,9 @@
         <h3>{{ post.titulo }}</h3>
         <p>{{ post.cuerpo }}</p>
         <p>{{ post.etiquetas }}</p>
-        <span class="badge badge-pill badge-secondary mr-2" ng-repeat="badge in getBadges(post.etiquetas)">{{ badge }}</span>
+        <span class="badge badge-pill badge-secondary mr-2" ng-repeat="badge in getBadges(post.etiquetas) track by $index">{{ badge }}</span>
     </div>
 </div>
-<div class="my-4">
+<div class="my-4 text-center">
     <a href="./post/plist/5/1" class="btn btn-primary">Ver todas las publicaciones</a>
 </div>

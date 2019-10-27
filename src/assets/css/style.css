@@ -60,6 +60,14 @@ img {
 }
 
 /* MEDIA QUERIES */
+@media (max-width: 991px) {
+    .nav-link.active {
+        background-color: transparent !important;
+        font-weight: bold;
+        color: rgb(66, 133, 244) !important;
+    }
+}
+
 @media (max-width: 767px) {
     body {
         margin-left: .75em !important;

@@ -3,8 +3,16 @@ myApp.factory('myService', ['$http', '$q', function ($http, $q) {
         getCount: function () {
             return $http.get("http://localhost:8081/blogbuster/json?ob=post&op=getcount")
         },
-        getPage: function (ppe, np) {
-            return $http.get(`http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}`);
+        getPage: function (ppe, np, order, direction) {
+            let url = "";
+            if (order == null && direction == null) {
+                url = `http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}`
+            } else if (order != null && direction == null) {
+                url = `http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}&order=${order}`
+            } else if (order != null && direction != null) {
+                url = `http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}&order=${order}&direction=${direction}`
+            }
+            return $http.get(url);
         },
         getPost: function (id) {
             return $http.get(`http://localhost:8081/blogbuster/json?ob=post&op=get&id=${id}`);
@@ -22,7 +30,7 @@ myApp.factory('myService', ['$http', '$q', function ($http, $q) {
                 data: JSON.stringify(response)
             });
         },
-        newPost: function(response) {
+        newPost: function (response) {
             return $http({
                 url: 'http://localhost:8081/blogbuster/json?ob=post&op=insert',
                 method: 'POST',

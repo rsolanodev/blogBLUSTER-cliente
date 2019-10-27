@@ -1,6 +1,5 @@
 <h2 class="mt-4">Listado de Posts</h2>
 <p class="mb-4">Nº de posts: {{ num_posts }}</p>
-
 <div ng-if="is_ready">
     <div class="row">
         <div class="col-md-6">
@@ -8,7 +7,7 @@
                 <ul class="pagination justify-content-left">
                     <li class="page-item" ng-class="{'active':(actually_page==p)}" ng-disabled="p == '...'"
                         ng-repeat="p in pages track by $index">
-                        <a class="page-link" ng-if="p != '...'" href="./post/plist/{{ rpp }}/{{ p }}">{{ p }}
+                        <a class="page-link" ng-if="p != '...'" ng-href="./post/plist/{{rpp}}/{{p}}{{ buildURL() }}">{{ p }}
                         </a>
                         <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                     </li>
@@ -16,17 +15,35 @@
             </nav>
         </div>
         <div class="col-md-6 text-right">
-            <div class="dropdown mb-3">
-                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
+            <div class="dropdown mb-3 d-inline">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuFilter"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    Ordenar por
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuFilter">
+                    <a class="dropdown-item" ng-href="{{ full_url() }}?order=id">ID (ascendente)</a>
+                    <a class="dropdown-item" ng-href="{{ full_url() }}?order=id&direction=desc">ID (descendente)</a>
+                    <a class="dropdown-item" ng-href="{{ full_url() }}?order=titulo">Título (ascendente)</a>
+                    <a class="dropdown-item" ng-href="{{ full_url() }}?order=titulo&direction=desc">Título (descendente)</a>
+                    <a class="dropdown-item" ng-href="{{ full_url() }}?order=cuerpo">Cuerpo (ascendente)</a>
+                    <a class="dropdown-item" ng-href="{{ full_url() }}?order=cuerpo&direction=desc">Cuerpo (descendente)</a>
+                    <a class="dropdown-item" ng-href="{{ full_url() }}?order=etiquetas">Etiquetas (ascendente)</a>
+                    <a class="dropdown-item" ng-href="{{ full_url() }}?order=etiquetas&direction=desc">Etiquetas (descendente)</a>
+                </div>
+            </div>
+
+            <div class="dropdown mb-3 d-inline">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuPPP"
                         data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                     Posts/Página
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="./post/plist/5/{{actually_page}}">5</a>
-                    <a class="dropdown-item" href="./post/plist/10/{{actually_page}}">10</a>
-                    <a class="dropdown-item" href="./post/plist/25/{{actually_page}}">25</a>
-                    <a class="dropdown-item" href="./post/plist/50/{{actually_page}}">50</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuPPP">
+                    <a class="dropdown-item" ng-href="./post/plist/5/{{actually_page}}{{ buildURL() }}">5</a>
+                    <a class="dropdown-item" ng-href="./post/plist/10/{{actually_page}}{{ buildURL() }}">10</a>
+                    <a class="dropdown-item" ng-href="./post/plist/25/{{actually_page}}{{ buildURL() }}">25</a>
+                    <a class="dropdown-item" ng-href="./post/plist/50/{{actually_page}}{{ buildURL() }}">50</a>
                 </div>
             </div>
         </div>
