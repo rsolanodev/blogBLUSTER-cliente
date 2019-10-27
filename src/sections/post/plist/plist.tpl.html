@@ -4,7 +4,7 @@
 <div ng-if="is_ready">
     <div class="row">
         <div class="col-md-6">
-            <nav aria-label="Paginación">
+            <nav aria-label="Paginación" ng-if="pages.length > 1">
                 <ul class="pagination justify-content-left">
                     <li class="page-item" ng-class="{'active':(actually_page==p)}" ng-disabled="p == '...'"
                         ng-repeat="p in pages track by $index">
@@ -16,7 +16,7 @@
             </nav>
         </div>
         <div class="col-md-6 text-right">
-            <div class="dropdown">
+            <div class="dropdown mb-3">
                 <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
