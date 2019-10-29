@@ -14,15 +14,20 @@ myApp.controller('PostEditController', ['$scope', '$http', 'myService', '$routeP
     };
 
     $scope.edit = function () {
-        $scope.data = {
-            "id": $scope.id,
-            "titulo": post.titulo,
-            "cuerpo": post.cuerpo,
-            "etiquetas": post.etiquetas
+        const datos = {
+            id: $scope.id,
+            titulo: $scope.titulo,
+            cuerpo: $scope.cuerpo,
+            etiquetas: $scope.etiquetas
+        }
+        var jsonToSend = {
+            data: JSON.stringify(datos)
         };
 
-        myService.updatePost($scope.data).then(function () {
-            $scope.back();
+        myService.updatePost(jsonToSend).then(function () {
+            alert("Modificado");
+        }, function() {
+            alert("No modificado")
         });
 
         return false;

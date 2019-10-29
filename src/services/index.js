@@ -20,25 +20,17 @@ myApp.factory('myService', ['$http', '$q', function ($http, $q) {
         removePost: function (id) {
             return $http.get(`http://localhost:8081/blogbuster/json?ob=post&op=remove&id=${id}`);
         },
-        updatePost: function (response) {
-            return $http({
-                url: 'http://localhost:8081/blogbuster/json?ob=post&op=update',
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                data: JSON.stringify(response)
+        updatePost: function (jsonToSend) {
+            $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+            return $http.get('http://localhost:8081/blogbuster/json?ob=post&op=update', {
+                params: jsonToSend
             });
         },
-        newPost: function (response) {
-            return $http({
-                url: 'http://localhost:8081/blogbuster/json?ob=post&op=insert',
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                data: JSON.stringify(response)
-            })
+        newPost: function (jsonToSend) {
+            $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+            return $http.get('http://localhost:8081/blogbuster/json?ob=post&op=insert', {
+                params: jsonToSend
+            });
         },
         pagination: function (num_posts, ppe, actually_page, range) {
             let num_pages = Math.ceil(num_posts / ppe);
