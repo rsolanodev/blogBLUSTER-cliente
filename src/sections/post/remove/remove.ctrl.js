@@ -2,7 +2,7 @@ myApp.controller('PostRemoveController', ['$scope', '$http', 'myService', '$rout
     $scope.id = parseInt($routeParams.id);
 
     myService.getPost($scope.id).then(function (data) {
-        $scope.post = data.data.response;
+        $scope.post = data.data.message;
     });
 
     $scope.back = function() {

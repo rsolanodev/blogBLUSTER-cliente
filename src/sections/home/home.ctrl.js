@@ -3,7 +3,7 @@ myApp.controller('HomeController', ['$scope', '$http', 'myService', '$routeParam
     $scope.rpp = parseInt($routeParams.rpp);
 
     myService.getPage(5, 1).then(function (data) {
-        $scope.posts = data.data.response;
+        $scope.posts = data.data.message;
     });
     
     $scope.getBadges = function(str) {

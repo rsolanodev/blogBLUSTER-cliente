@@ -2,7 +2,7 @@ myApp.controller('PostEditController', ['$scope', '$http', 'myService', '$routeP
     $scope.id = parseInt($routeParams.id);
 
     myService.getPost($scope.id).then(function (data) {
-        post = data.data.response;
+        post = data.data.message;
 
         $scope.titulo = post.titulo
         $scope.cuerpo = post.cuerpo
