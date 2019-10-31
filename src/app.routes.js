@@ -20,6 +20,12 @@ myApp.config(function ($routeProvider) {
     }).when('/post/new', {
         templateUrl: 'src/sections/post/new/new.tpl.html',
         controller: 'PostNewController'
+    }).when('/login', {
+        templateUrl: 'src/sections/users/login/login.tpl.html',
+        controller: 'LoginController'
+    }).when('/logout', {
+        templateUrl: 'src/sections/users/logout/logout.tpl.html',
+        controller: 'LogoutController'
     }).otherwise({
         redirectTo: '/'
     });

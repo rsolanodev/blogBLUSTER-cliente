@@ -51,5 +51,14 @@ myApp.factory('myService', ['$http', '$q', function ($http, $q) {
 
             return pages;
         },
+        login: function (username, password) {
+            return $http.get(`http://localhost:8081/blogbuster/json?ob=usuario&op=login&username=${username}&password=${password}`);
+        },
+        logout: function () {
+            return $http.get('http://localhost:8081/blogbuster/json?ob=usuario&op=logout');
+        },
+        checkAuth: function () {
+            return $http.get('http://localhost:8081/blogbuster/json?ob=usuario&op=check');
+        }
     }
 }]);

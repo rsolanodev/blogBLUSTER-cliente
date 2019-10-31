@@ -8,4 +8,6 @@ myApp.controller('NavbarController', function ($scope, $location) {
 
         return viewLocation === $scope.location;
     };
+
+    
 });
