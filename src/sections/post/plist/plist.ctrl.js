@@ -1,4 +1,4 @@
-myApp.controller('PostListController', ['$scope', '$http', 'myService', '$routeParams', '$window', '$location', function ($scope, $http, myService, $routeParams, $window, $location) {
+myApp.controller('PostListController', ['$scope', '$http', 'promisesService', '$routeParams', '$window', '$location', function ($scope, $http, promisesService, $routeParams, $window, $location) {
     $scope.actually_page = parseInt($routeParams.page);
     $scope.rpp = parseInt($routeParams.rpp);
 
@@ -21,13 +21,13 @@ myApp.controller('PostListController', ['$scope', '$http', 'myService', '$routeP
     };
 
 
-    myService.getPage($scope.rpp, $scope.actually_page, $scope.order, $scope.direction).then(function (data) {
+    promisesService.getPage($scope.rpp, $scope.actually_page, $scope.order, $scope.direction).then(function (data) {
         $scope.posts = data.data.message;
     });
 
-    myService.getCount().then(function (data) {
+    promisesService.getCount().then(function (data) {
         $scope.num_posts = data.data.message;
-        $scope.pages = myService.pagination($scope.num_posts, $scope.rpp, $scope.actually_page, 2);
+        $scope.pages = promisesService.pagination($scope.num_posts, $scope.rpp, $scope.actually_page, 2);
 
         if ($scope.pages.indexOf($scope.actually_page) === -1) {
             $window.location.href = `./post/plist/${$scope.rpp}/1`;

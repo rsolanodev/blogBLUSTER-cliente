@@ -1,12 +1,13 @@
-myApp.controller('PostEditController', ['$scope', '$http', 'myService', '$routeParams', function ($scope, $http, myService, $routeParams) {
+myApp.controller('PostEditController', ['$scope', '$http', 'promisesService', '$routeParams', function ($scope, $http, promisesService, $routeParams) {
     $scope.id = parseInt($routeParams.id);
+    $scope.success = false;
+    $scope.failure = false;
 
-    myService.getPost($scope.id).then(function (data) {
-        post = data.data.message;
-
-        $scope.titulo = post.titulo
-        $scope.cuerpo = post.cuerpo
-        $scope.etiquetas = post.etiquetas
+    promisesService.getPost($scope.id).then(function (data) {
+        let post = data.data.message;
+        $scope.titulo = post.titulo;
+        $scope.cuerpo = post.cuerpo;
+        $scope.etiquetas = post.etiquetas;
     });
 
     $scope.back = function () {
@@ -14,22 +15,21 @@ myApp.controller('PostEditController', ['$scope', '$http', 'myService', '$routeP
     };
 
     $scope.edit = function () {
-        const datos = {
+        let datos = {
             id: $scope.id,
             titulo: $scope.titulo,
             cuerpo: $scope.cuerpo,
             etiquetas: $scope.etiquetas
-        }
-        var jsonToSend = {
+        };
+
+        let jsonToSend = {
             data: JSON.stringify(datos)
         };
 
-        myService.updatePost(jsonToSend).then(function () {
-            alert("Modificado");
+        promisesService.updatePost(jsonToSend).then(function () {
+            $scope.success = true;
         }, function() {
-            alert("No modificado")
+            $scope.failure = true;
         });
-
-        return false;
     }
 }]);

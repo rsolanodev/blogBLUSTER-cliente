@@ -1,8 +1,17 @@
+<form name="updatePost" novalidate>
+    <div class="alert alert-success" role="alert" ng-show="success">
+        Artículo modificado con éxito.
+        <a href="" class="float-right text-dark" ng-click="back()">← Back</a>
+    </div>
+    <div class="alert alert-danger" role="alert" ng-show="failure">
+        El artículo no se ha podido modificar, inténtelo de nuevo.
+    </div>
     <div class="form-group">
         <div class="row">
             <div class="col-6">
                 <h5>Título</h5>
-                <input type="text" class="form-control" placeholder="Introducir título" ng-value="titulo" ng-model="titulo">
+                <input type="text" class="form-control" placeholder="Introducir título" ng-value="titulo"
+                       ng-model="titulo">
             </div>
         </div>
     </div>
@@ -10,8 +19,9 @@
         <div class="row">
             <div class="col-8">
                 <h5>Cuerpo</h5>
-                <textarea name="" id="" cols="30" rows="10" placeholder="Introducir el cuerpo" ng-value="cuerpo" ng-model="cuerpo"
-                    class="form-control"></textarea>
+                <textarea name="" id="" cols="30" rows="10" placeholder="Introducir el cuerpo" ng-value="cuerpo"
+                          ng-model="cuerpo"
+                          class="form-control"></textarea>
             </div>
         </div>
     </div>
@@ -19,7 +29,8 @@
         <div class="row">
             <div class="col-4">
                 <h5>Etiquetas</h5>
-                <input type="text" placeholder="Introducir etiquetas" class="form-control" ng-value="etiquetas" ng-model="etiquetas">
+                <input type="text" placeholder="Introducir etiquetas" class="form-control" ng-value="etiquetas"
+                       ng-model="etiquetas">
             </div>
         </div>
     </div>
@@ -30,3 +41,4 @@
             </div>
         </div>
     </div>
+</form>

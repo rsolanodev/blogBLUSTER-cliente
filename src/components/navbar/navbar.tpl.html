@@ -1,17 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="./home"><span class="title">BLOGBUSTER</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link" ng-class="{ active: isActive('/')}" href="./home">Home</a>
-            <a class="nav-item nav-link" ng-class="{ active: isActive('/post/plist')}" href="./post/plist/5/1">List</a>
-            <a class="nav-item nav-link" ng-class="{ active: isActive('/post/new')}" href="./post/new">New</a>
+            <a class="nav-item nav-link" ng-class="{ active: isActive('/post/plist')}" ng-if="user !== null"
+               href="./post/plist/5/1">List</a>
+            <a class="nav-item nav-link" ng-class="{ active: isActive('/post/new')}" ng-if="user !== null"
+               href="./post/new">New</a>
         </div>
     </div>
     <form class="form-inline my-2 my-lg-0">
-        <a href="./login"><button class="btn btn-primary my-2 my-sm-0">Login</button></a>
-        <a href="./logout"><button class="btn btn-primary my-2 my-sm-0">Logout</button></a>
-      </form>
+        <a href="./login" ng-if="user === null">
+            <button class="btn btn-primary my-2 my-sm-0">Login</button>
+        </a>
+        <span class="mr-4" ng-if="user !== null">Bienvenido, {{ user | capitalize }}</span>
+        <a href="./logout" ng-if="user !== null">
+            <button class="btn btn-primary my-2 my-sm-0">Logout</button>
+        </a>
+    </form>
 </nav>

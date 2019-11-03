@@ -1,4 +1,4 @@
-myApp.factory('myService', ['$http', '$q', function ($http, $q) {
+myApp.factory('promisesService', ['$http', function ($http) {
     return {
         getCount: function () {
             return $http.get("http://localhost:8081/blogbuster/json?ob=post&op=getcount")

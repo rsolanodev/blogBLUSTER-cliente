@@ -1,8 +1,8 @@
-myApp.controller('HomeController', ['$scope', '$http', 'myService', '$routeParams', function ($scope, $http, myService, $routeParams) {
+myApp.controller('HomeController', ['$scope', '$http', 'promisesService', '$routeParams', function ($scope, $http, promisesService, $routeParams) {
     $scope.actually_page = parseInt($routeParams.page);
     $scope.rpp = parseInt($routeParams.rpp);
 
-    myService.getPage(5, 1).then(function (data) {
+    promisesService.getPage(10, 1).then(function (data) {
         $scope.posts = data.data.message;
     });
     

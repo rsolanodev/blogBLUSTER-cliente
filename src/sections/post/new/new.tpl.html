@@ -1,6 +1,7 @@
 <form name="newPost" novalidate>
     <div class="alert alert-success" role="alert" ng-show="success">
         Nuevo artículo añadido con éxito.
+        <a href="" class="float-right text-dark" ng-click="back()">← Back</a>
     </div>
     <div class="alert alert-danger" role="alert" ng-show="failure">
         El artículo no se ha podido añadir a la base de datos, inténtelo de nuevo.
