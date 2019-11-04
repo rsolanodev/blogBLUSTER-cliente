@@ -55,14 +55,18 @@ img {
 }
 
 .nav-link.active {
-    background-color:  rgba(66,133,244,.075);
-    color: rgba(0,0,0,.5) !important;
+    background-color: rgba(66, 133, 244, .075);
+    color: rgba(0, 0, 0, .5) !important;
     border-radius: 8px;
+}
+
+a[href="./login"] button {
+    padding: .375rem 1.75rem;
 }
 
 .main-content {
     background-color: #fff;
-    box-shadow: rgba(69, 75, 92, 0.3) 0px 16px 128px 0px;
+    box-shadow: rgba(69, 75, 92, 0.3) 0 16px 128px 0;
     padding: 1rem 1.75rem;
     border-radius: 4px;
 }
@@ -84,6 +88,46 @@ img {
     margin: -1px auto 0;
     width: 80%;
     z-index: -1;
+}
+
+/* HOME PAGE */
+.img-jumbo {
+    max-width: 100%;
+    width: 100%;
+    height: 30vh;
+    border-radius: 8px;
+}
+
+.card {
+    cursor: pointer;
+    border: 0;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, .06);
+    transition-duration: .25s;
+    transition-timing-function: ease-in;
+}
+
+.card:hover {
+    box-shadow: 0 1px 20px 5px rgba(0, 0, 0, .06)
+}
+
+.articles, .article:hover {
+   text-decoration: none !important;
+}
+
+.card-title {
+    margin-bottom: .5em;
+    font-weight: 600;
+    color: #4e4e4e;
+}
+
+.card-body {
+    height: 22vh;
+}
+
+.titles {
+    border-left: 0.25em solid rgba(66, 133, 244, .4) !important;
+    background-color: rgba(66, 133, 244, .05);
+    padding: .25em .5em;
 }
 
 /* MEDIA QUERIES */
