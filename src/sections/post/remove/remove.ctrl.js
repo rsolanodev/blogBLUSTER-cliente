@@ -1,4 +1,9 @@
-myApp.controller('PostRemoveController', ['$scope', '$http', 'promisesService', '$routeParams', function ($scope, $http, promisesService, $routeParams) {
+myApp.controller('PostRemoveController', ['$scope', '$location', 'promisesService', '$routeParams', 'auth', function ($scope, $location, promisesService, $routeParams, auth) {
+    $scope.authStatus = auth.data.status;
+    if ($scope.authStatus != 200) {
+        $location.path('/login');
+    }
+    
     $scope.id = parseInt($routeParams.id);
 
     promisesService.getPost($scope.id).then(function (data) {

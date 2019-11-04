@@ -1,7 +1,10 @@
-myApp.controller('PostNewController', ['$scope', '$http', 'promisesService', '$routeParams', function ($scope, $http, promisesService, $routeParams) {
+myApp.controller('PostNewController', ['$scope', '$location', 'promisesService', 'auth', function ($scope, $location, promisesService, auth) {
+    if (auth.data.status != 200) {
+        $location.path('/login');
+    }
+
     $scope.success = false;
     $scope.failure = false;
-
 
     $scope.new = function () {
         const datos = {

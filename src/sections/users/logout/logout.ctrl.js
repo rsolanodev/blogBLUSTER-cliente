@@ -1,4 +1,8 @@
-myApp.controller('LogoutController', ['$scope', 'promisesService', '$window', '$location', '$rootScope', function ($scope, promisesService, $window, $location, $rootScope) {
+myApp.controller('LogoutController', ['$scope', 'promisesService', '$location', 'auth', '$rootScope', '$window', function ($scope, promisesService, $location, auth, $rootScope, $window) {
+    if (auth.data.status !== 200) {
+        $location.path('/login');
+    }
+    
     $scope.logout = () => {
         promisesService.logout().then((response) => {
             if (response.data.status === 200) {
@@ -6,7 +10,7 @@ myApp.controller('LogoutController', ['$scope', 'promisesService', '$window', '$
                 $rootScope.$emit('CallUser');
                 $location.path("/login");
             } else {
-                alert("No se ha podido cerrado sesión");
+                console.log("Error trying to logout");
             }
         });
     };

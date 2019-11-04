@@ -1,4 +1,9 @@
-myApp.controller('PostEditController', ['$scope', '$http', 'promisesService', '$routeParams', function ($scope, $http, promisesService, $routeParams) {
+myApp.controller('PostEditController', ['$scope', '$location', 'promisesService', '$routeParams', 'auth', function ($scope, $location, promisesService, $routeParams, auth) {
+    $scope.authStatus = auth.data.status;
+    if ($scope.authStatus != 200) {
+        $location.path('/login');
+    }
+    
     $scope.id = parseInt($routeParams.id);
     $scope.success = false;
     $scope.failure = false;

@@ -1,4 +1,9 @@
-myApp.controller('PostListController', ['$scope', '$http', 'promisesService', '$routeParams', '$window', '$location', function ($scope, $http, promisesService, $routeParams, $window, $location) {
+myApp.controller('PostListController', ['$scope', '$location', 'promisesService', '$routeParams', '$window', '$location', 'auth', function ($scope, $location, promisesService, $routeParams, $window, $location, auth) {
+    $scope.authStatus = auth.data.status;
+    if ($scope.authStatus != 200) {
+        $location.path('/login');
+    }
+
     $scope.actually_page = parseInt($routeParams.page);
     $scope.rpp = parseInt($routeParams.rpp);
 

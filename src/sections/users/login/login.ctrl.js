@@ -1,4 +1,4 @@
-myApp.controller('LoginController', ['$scope', '$rootScope', '$http', 'promisesService', '$window', '$location', function ($scope, $rootScope, $http, promisesService, $window, $location) {
+myApp.controller('LoginController', ['$scope', '$rootScope', 'promisesService', '$window', '$location', function ($scope, $rootScope, promisesService, $window, $location) {
     $scope.username = "";
     $scope.password = "";
     $scope.fail_auth = false;
@@ -8,7 +8,7 @@ myApp.controller('LoginController', ['$scope', '$rootScope', '$http', 'promisesS
             if (response.data.status === 200) {
                 $window.sessionStorage.setItem("username", $scope.username);
                 $rootScope.$emit('CallUser');
-                $location.path("/")
+                $location.path("/");
             } else {
                 $scope.fail_auth = true
             }
