@@ -16,7 +16,7 @@ myApp.controller('PostRemoveController', ['$scope', '$location', 'promisesServic
 
     $scope.remove = function() {
         promisesService.removePost($scope.id).then(function () {
-            $scope.back();
+            $location.path('/post/plist/5/1')
         });
     }
 }]);

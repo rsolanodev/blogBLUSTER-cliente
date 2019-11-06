@@ -2,10 +2,14 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 /* GENERAL */
+html {
+    background-color: #e5e8f0;
+}
+
 body {
     font-family: "Segoe UI", sans-serif;
     color: #757763;
-    background-color: #e5e8f0;
+    background-color: transparent;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -81,6 +85,10 @@ a[href="./login"] button {
     border: 1px solid rgba(0, 0, 0, .075);
 }
 
+.login-form h3 {
+    font-weight: 700;
+}
+
 .card-shadow {
     background-color: #fff;
     box-shadow: 0 2px 25px 2px rgba(0, 0, 0, 1), 0 2px 50px 2px rgba(0, 0, 0, 1), 0 0 100px 3px rgba(0, 0, 0, .25);
@@ -104,10 +112,11 @@ a[href="./login"] button {
     box-shadow: 0 1px 1px 1px rgba(0, 0, 0, .06);
     transition-duration: .25s;
     transition-timing-function: ease-in;
+    overflow: hidden;
 }
 
 .card:hover {
-    box-shadow: 0 1px 20px 5px rgba(0, 0, 0, .06)
+    box-shadow: 0 1px 20px 5px rgba(0, 0, 0, .1)
 }
 
 .articles, .article:hover {
@@ -121,7 +130,7 @@ a[href="./login"] button {
 }
 
 .card-body {
-    height: 22vh;
+    height: 35vh;
 }
 
 .titles {

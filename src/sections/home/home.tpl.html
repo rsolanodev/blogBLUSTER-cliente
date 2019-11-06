@@ -6,6 +6,8 @@
                 <div class="card-body">
                     <h4 class="card-title">{{ post.titulo }}</h4>
                     <p class="card-text text-dark">{{ post.cuerpo.substring(0, 160) }}</p>
+                    <h6 class="float-right text-muted" ng-show="post.fecha">
+                        {{ post.fecha | stringToDate | date : "dd/MM/yyyy" }}</h6>
                 </div>
             </div>
         </a>
@@ -20,7 +22,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <span class="badge badge-pill badge-secondary mr-2"
-                          ng-repeat="badge in getBadges(post.etiquetas) track by $index">{{ badge }}</span>
+                        ng-repeat="badge in getBadges(post.etiquetas) track by $index">{{ badge }}</span>
                 </div>
                 <div class="col-md-2 text-right">
                     <a href="./post/view/{{ post.id }}">Leer más</a>

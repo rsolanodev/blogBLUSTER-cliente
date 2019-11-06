@@ -2,7 +2,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'src/sections/home/home.tpl.html',
         controller: 'HomeController'
-    }).when('/post/plist/:rpp/:page', {
+    }).when('/post/plist/:rpp/:page/:colOrder?/:order?', {
         templateUrl: 'src/sections/post/plist/plist.tpl.html',
         controller: 'PostListController',
         resolve: {

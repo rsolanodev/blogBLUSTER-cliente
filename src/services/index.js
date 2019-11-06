@@ -3,14 +3,12 @@ myApp.factory('promisesService', ['$http', function ($http) {
         getCount: function () {
             return $http.get("http://localhost:8081/blogbuster/json?ob=post&op=getcount")
         },
-        getPage: function (ppe, np, order, direction) {
+        getPage: function (ppe, np, colOrder, order) {
             let url = "";
-            if (order == null && direction == null) {
+            if (colOrder == null && order == null) {
                 url = `http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}`
-            } else if (order != null && direction == null) {
-                url = `http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}&order=${order}`
-            } else if (order != null && direction != null) {
-                url = `http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}&order=${order}&direction=${direction}`
+            } else {
+                url = `http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}&order=${colOrder},${order}`
             }
             return $http.get(url);
         },
@@ -52,7 +50,7 @@ myApp.factory('promisesService', ['$http', function ($http) {
             return pages;
         },
         login: function (username, password) {
-            return $http.get(`http://localhost:8081/blogbuster/json?ob=usuario&op=login&username=${username}&password=${password}`);
+            return $http.get(`http://localhost:8081/blogbuster/json?ob=usuario&op=login&username=${username}&password=${forge_sha256(password)}`);
         },
         logout: function () {
             return $http.get('http://localhost:8081/blogbuster/json?ob=usuario&op=logout');

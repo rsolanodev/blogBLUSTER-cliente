@@ -7,26 +7,24 @@ myApp.controller('PostListController', ['$scope', '$location', 'promisesService'
     $scope.actually_page = parseInt($routeParams.page);
     $scope.rpp = parseInt($routeParams.rpp);
 
-    $scope.order = $location.search().order;
-    $scope.direction = $location.search().direction;
+    $scope.colOrder = $routeParams.colOrder;
+    $scope.order = $routeParams.order;
 
     $scope.full_url = function() {
         let url = $location.absUrl();
-        return url.indexOf('?') === -1 ? url : url.substring(0, url.indexOf('?'));
+        return url.substring(0, 48);
     };
 
     $scope.buildURL = function() {
-        if ($scope.order !== undefined && $scope.direction !== undefined) {
-            return `?order=${$scope.order}&direction=${$scope.direction}`;
-        } else if ($scope.order !== undefined && $scope.direction === undefined) {
-            return `?order=${$scope.order}`;
+        if ($scope.colOrder !== undefined && $scope.order !== undefined) {
+            return `/${$scope.colOrder}/${$scope.order}`;
         } else {
             return '';
         }
     };
 
 
-    promisesService.getPage($scope.rpp, $scope.actually_page, $scope.order, $scope.direction).then(function (data) {
+    promisesService.getPage($scope.rpp, $scope.actually_page, $scope.colOrder, $scope.order).then(function (data) {
         $scope.posts = data.data.message;
     });
 
