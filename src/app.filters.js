@@ -20,10 +20,16 @@ myApp.filter('clipString', function ($filter) {
             return "";
         }
         if (input.length > 200) {
-            return input.substr(0, 150).trim() + " ...";
+            return input.substr(0, 185).trim() + "...";
 
         } else {
             return input;
         }
+    };
+})
+
+myApp.filter('toHTML', function ($filter) {
+    return function (input) {
+        
     };
 })

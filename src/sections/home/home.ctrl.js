@@ -2,7 +2,7 @@ myApp.controller('HomeController', ['$scope', '$http', 'promisesService', '$rout
     $scope.actually_page = parseInt($routeParams.page);
     $scope.rpp = parseInt($routeParams.rpp);
 
-    promisesService.getPage(10, 1).then(function (data) {
+    promisesService.getPage(10, 1, "id", "desc").then(function (data) {
         $scope.posts = data.data.message;
     });
     

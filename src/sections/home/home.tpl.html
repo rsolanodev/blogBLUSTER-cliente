@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h4 class="card-title">{{ post.titulo }}</h4>
                     <p class="card-text text-dark">{{ post.cuerpo.substring(0, 160) }}</p>
-                    <h6 class="float-right text-muted" ng-show="post.fecha">
+                    <h6 class="text-left text-muted" ng-show="post.fecha">
                         {{ post.fecha | stringToDate | date : "dd/MM/yyyy" }}</h6>
                 </div>
             </div>

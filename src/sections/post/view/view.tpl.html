@@ -16,4 +16,8 @@
         <th>Etiquetas</th>
         <td>{{ post.etiquetas }}</td>
     </tr>
+    <tr>
+        <th>Fecha</th>
+        <td>{{ post.fecha | stringToDate | date : "dd/MM/yyyy" }}</td>
+    </tr>
 </table>

@@ -13,6 +13,7 @@ myApp.controller('PostEditController', ['$scope', '$location', 'promisesService'
         $scope.titulo = post.titulo;
         $scope.cuerpo = post.cuerpo;
         $scope.etiquetas = post.etiquetas;
+        $scope.fecha = moment(post.fecha, 'DD/MM/YYYY HH:mm').toDate();
     });
 
     $scope.back = function () {
@@ -24,7 +25,8 @@ myApp.controller('PostEditController', ['$scope', '$location', 'promisesService'
             id: $scope.id,
             titulo: $scope.titulo,
             cuerpo: $scope.cuerpo,
-            etiquetas: $scope.etiquetas
+            etiquetas: $scope.etiquetas,
+            fecha: $scope.fecha
         };
 
         let jsonToSend = {
