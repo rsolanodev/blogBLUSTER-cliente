@@ -3,12 +3,15 @@ myApp.factory('promisesService', ['$http', function ($http) {
         getCount: function () {
             return $http.get("http://localhost:8081/blogbuster/json?ob=post&op=getcount")
         },
-        getPage: function (ppe, np, colOrder, order) {
+        getPage: function (ppe, np, colOrder, order, query_search) {
             let url = "";
             if (colOrder == null && order == null) {
                 url = `http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}`
             } else {
                 url = `http://localhost:8081/blogbuster/json?ob=post&op=getpage&page=${np}&rpp=${ppe}&order=${colOrder},${order}`
+            }
+            if (query_search != undefined || query_search != null) {
+                url += `&q=${query_search}`;
             }
             return $http.get(url);
         },

@@ -68,5 +68,13 @@ myApp.controller('PostListController', ['$scope', '$location', 'promisesService'
         }
     });
 
+    $scope.search = function($event) {
+        if($event.which === 13) {
+            promisesService.getPage($scope.rpp, $scope.actually_page, $scope.colOrder, $scope.order, $event.target.value).then(function (data) {
+                $scope.posts = data.data.message;
+            });
+        }
+    }
+
     $scope.page_name = "plist"
 }]);

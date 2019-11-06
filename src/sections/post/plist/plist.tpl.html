@@ -7,7 +7,8 @@
                 <ul class="pagination justify-content-left">
                     <li class="page-item" ng-class="{'active':(actually_page==p)}" ng-disabled="p == '...'"
                         ng-repeat="p in pages track by $index">
-                        <a class="page-link" ng-if="p != '...'" ng-href="./post/plist/{{rpp}}/{{p}}{{ buildURL() }}">{{ p }}
+                        <a class="page-link" ng-if="p != '...'" ng-href="./post/plist/{{rpp}}/{{p}}{{ buildURL() }}">{{
+                            p }}
                         </a>
                         <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                     </li>
@@ -15,17 +16,24 @@
             </nav>
         </div>
         <div class="col-md-6 text-right">
-            <div class="dropdown mb-3 d-inline">
-                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuPPP"
-                        data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                    Posts/Página
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuPPP">
-                    <a class="dropdown-item" ng-href="./post/plist/5/{{actually_page}}{{ buildURL() }}">5</a>
-                    <a class="dropdown-item" ng-href="./post/plist/10/{{actually_page}}{{ buildURL() }}">10</a>
-                    <a class="dropdown-item" ng-href="./post/plist/25/{{actually_page}}{{ buildURL() }}">25</a>
-                    <a class="dropdown-item" ng-href="./post/plist/50/{{actually_page}}{{ buildURL() }}">50</a>
+            <div class="row">
+                <div class="col-md-8"><input
+                        style="padding: 0 .75rem; background-color: #f8f9fa; border: 0; font-size: .95rem;"
+                        class="form-control" type="search" placeholder="Search" ng-keypress="search($event)"></div>
+                <div class="col-md-4">
+                    <div class="dropdown mb-3 d-inline">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuPPP"
+                                data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            Posts/Página
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuPPP">
+                            <a class="dropdown-item" ng-href="./post/plist/5/{{actually_page}}{{ buildURL() }}">5</a>
+                            <a class="dropdown-item" ng-href="./post/plist/10/{{actually_page}}{{ buildURL() }}">10</a>
+                            <a class="dropdown-item" ng-href="./post/plist/25/{{actually_page}}{{ buildURL() }}">25</a>
+                            <a class="dropdown-item" ng-href="./post/plist/50/{{actually_page}}{{ buildURL() }}">50</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,11 +42,36 @@
     <table class="table plist">
         <thead>
         <tr>
-            <th scope="col" style="width: 3vw;"><a class="text-dark" ng-class="colOrder === 'id' && order === 'desc' ? 'dropup' : ''" ng-href="{{ full_url() }}/id/{{ get_order() }}">Id<span class="dropdown-toggle"></span></th>
-            <th scope="col"><a class="text-dark" ng-class="colOrder === 'titulo' && order === 'desc' ? 'dropup' : ''" ng-href="{{ full_url() }}/titulo/{{ get_order() }}">Título<span class="dropdown-toggle"></span></a></th>
-            <th scope="col"><a class="text-dark" ng-class="colOrder === 'cuerpo' && order === 'desc' ? 'dropup' : ''" ng-href="{{ full_url() }}/cuerpo/{{ get_order() }}">Cuerpo<span class="dropdown-toggle"></span></a></th>
-            <th scope="col"><a class="text-dark" ng-class="colOrder === 'etiquetas' && order === 'desc' ? 'dropup' : ''" ng-href="{{ full_url() }}/etiquetas/{{ get_order() }}">Etiquetas<span class="dropdown-toggle"></span></a></th>
-            <th scope="col"><a class="text-dark" ng-class="colOrder === 'fecha' && order === 'desc' ? 'dropup' : ''" ng-href="{{ full_url() }}/fecha/{{ get_order() }}">Fecha<span class="dropdown-toggle"></span></a></th>
+            <th scope="col" style="width: 4vw;">
+                <a class="text-dark" ng-class="colOrder === 'id' && order === 'desc' ? 'dropup' : ''"
+                   ng-href="{{ full_url() }}/id/{{ get_order() }}">Id
+                    <span class="dropdown-toggle"></span>
+                </a>
+            </th>
+            <th scope="col">
+                <a class="text-dark" ng-class="colOrder === 'titulo' && order === 'desc' ? 'dropup' : ''"
+                   ng-href="{{ full_url() }}/titulo/{{ get_order() }}">Título
+                    <span class="dropdown-toggle"></span>
+                </a>
+            </th>
+            <th scope="col">
+                <a class="text-dark" ng-class="colOrder === 'cuerpo' && order === 'desc' ? 'dropup' : ''"
+                   ng-href="{{ full_url() }}/cuerpo/{{ get_order() }}">Cuerpo
+                    <span class="dropdown-toggle"></span>
+                </a>
+            </th>
+            <th scope="col">
+                <a class="text-dark" ng-class="colOrder === 'etiquetas' && order === 'desc' ? 'dropup' : ''"
+                   ng-href="{{ full_url() }}/etiquetas/{{ get_order() }}">Etiquetas
+                    <span class="dropdown-toggle"></span>
+                </a>
+            </th>
+            <th scope="col">
+                <a class="text-dark" ng-class="colOrder === 'fecha' && order === 'desc' ? 'dropup' : ''"
+                   ng-href="{{ full_url() }}/fecha/{{ get_order() }}">Fecha
+                    <span class="dropdown-toggle"></span>
+                </a>
+            </th>
             <th scope="col">Tools</th>
         </tr>
         </thead>
@@ -46,7 +79,7 @@
         <tr ng-repeat="post in posts">
             <td>{{ post.id }}</td>
             <td>{{ post.titulo }}</td>
-            <td>{{ post.cuerpo | clipString }}...</td>
+            <td>{{ post.cuerpo | clipString }}</td>
             <td>{{ post.etiquetas }}</td>
             <td>{{ post.fecha | stringToDate | date : "dd/MM/yyyy" }}</td>
             <td class="text-center">
