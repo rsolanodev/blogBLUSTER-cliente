@@ -12,8 +12,37 @@ myApp.controller('PostListController', ['$scope', '$location', 'promisesService'
 
     $scope.full_url = function() {
         let url = $location.absUrl();
-        return url.substring(0, 48);
+
+        let find_id = url.indexOf("id");
+        let find_titulo = url.indexOf("titulo");
+        let find_cuerpo = url.indexOf("cuerpo");
+        let find_etiquetas = url.indexOf("etiquetas");
+        let find_fecha = url.indexOf("fecha");
+
+        if (find_id !== -1) {
+            max_cut_string = find_id;
+        } else if(find_titulo !== -1) {
+            max_cut_string = find_titulo;
+        } else if(find_cuerpo !== -1) {
+            max_cut_string = find_cuerpo;
+        } else if(find_etiquetas !== -1) {
+            max_cut_string = find_etiquetas;
+        } else if(find_fecha !== -1) {
+            max_cut_string = find_fecha;
+        } else {
+            return url;
+        }
+
+        return url.substring(0, max_cut_string - 1);
     };
+
+    $scope.get_order = function() {
+        if($scope.order === "desc") {
+            return "asc"
+        } else {
+            return "desc"
+        }
+    }
 
     $scope.buildURL = function() {
         if ($scope.colOrder !== undefined && $scope.order !== undefined) {

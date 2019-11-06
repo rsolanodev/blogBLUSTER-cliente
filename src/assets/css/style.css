@@ -135,6 +135,10 @@ a[href="./login"] button {
     background-color: rgba(66, 133, 244, .05);
     padding: .25em .5em;
 }
+/* PLIST */
+.table.plist .dropdown-toggle {
+    padding-left: .5em;
+}
 
 /* MEDIA QUERIES */
 @media (max-width: 991px) {
