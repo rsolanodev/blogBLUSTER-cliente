@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-8"><input
                         style="padding: 0 .75rem; background-color: #f8f9fa; border: 0; font-size: .95rem;"
-                        class="form-control" type="search" placeholder="Search" ng-keypress="search($event)"></div>
+                        class="form-control" type="search" placeholder="Search" ng-keypress="search($event)" ng-model="search_query"></div>
                 <div class="col-md-4">
                     <div class="dropdown mb-3 d-inline">
                         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuPPP"
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <table class="table plist">
+    <table class="table plist" ng-show="!any_results">
         <thead>
         <tr>
             <th scope="col" style="width: 4vw;">
@@ -92,4 +92,5 @@
         </tr>
         </tbody>
     </table>
+    <h4 class="mt-4 mb-5" ng-show="any_results">No se ha encontrado ningún resultado con la búsqueda que has realizado.</h4>
 </div>

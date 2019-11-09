@@ -1,8 +1,11 @@
 myApp.controller('PostListController', ['$scope', '$location', 'promisesService', '$routeParams', '$window', '$location', 'auth', function ($scope, $location, promisesService, $routeParams, $window, $location, auth) {
     $scope.authStatus = auth.data.status;
-    if ($scope.authStatus != 200) {
+    if ($scope.authStatus !== 200) {
         $location.path('/login');
     }
+
+    $scope.search_query = "";
+    $scope.any_results = false;
 
     $scope.actually_page = parseInt($routeParams.page);
     $scope.rpp = parseInt($routeParams.rpp);
@@ -42,7 +45,7 @@ myApp.controller('PostListController', ['$scope', '$location', 'promisesService'
         } else {
             return "desc"
         }
-    }
+    };
 
     $scope.buildURL = function() {
         if ($scope.colOrder !== undefined && $scope.order !== undefined) {
@@ -71,10 +74,15 @@ myApp.controller('PostListController', ['$scope', '$location', 'promisesService'
     $scope.search = function($event) {
         if($event.which === 13) {
             promisesService.getPage($scope.rpp, $scope.actually_page, $scope.colOrder, $scope.order, $event.target.value).then(function (data) {
-                $scope.posts = data.data.message;
+                if(data.data.message.length > 0) {
+                    $scope.posts = data.data.message;
+                    $scope.any_results = false;
+                } else {
+                    $scope.any_results = true;
+                }
             });
         }
-    }
+    };
 
     $scope.page_name = "plist"
 }]);
