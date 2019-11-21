@@ -6,6 +6,7 @@ myApp.controller('PostListController', ['$scope', '$location', 'promisesService'
 
     $scope.search_query = "";
     $scope.any_results = false;
+    $scope.pagination_active = true;
 
     $scope.actually_page = parseInt($routeParams.page);
     $scope.rpp = parseInt($routeParams.rpp);
@@ -56,32 +57,49 @@ myApp.controller('PostListController', ['$scope', '$location', 'promisesService'
     };
 
 
-    promisesService.getPage($scope.rpp, $scope.actually_page, $scope.colOrder, $scope.order).then(function (data) {
-        $scope.posts = data.data.message;
-    });
+    $scope.loadPage = function() {
+        promisesService.getPage($scope.rpp, $scope.actually_page, $scope.colOrder, $scope.order).then(function (data) {
+            $scope.posts = data.data.message;
+        });
+    };
 
-    promisesService.getCount().then(function (data) {
-        $scope.num_posts = data.data.message;
-        $scope.pages = promisesService.pagination($scope.num_posts, $scope.rpp, $scope.actually_page, 2);
+    $scope.loadPage();
 
-        if ($scope.pages.indexOf($scope.actually_page) === -1) {
-            $window.location.href = `./post/plist/${$scope.rpp}/1`;
-        } else {
-            $scope.is_ready = true
-        }
-    });
+    $scope.loadPagination = function() {
+        promisesService.getCount().then(function (data) {
+            $scope.num_posts = data.data.message;
+            $scope.pages = promisesService.pagination($scope.num_posts, $scope.rpp, $scope.actually_page, 2);
+
+            if ($scope.pages.indexOf($scope.actually_page) === -1) {
+                $window.location.href = `./post/plist/${$scope.rpp}/1`;
+            } else {
+                $scope.is_ready = true
+            }
+        });
+    };
+    $scope.loadPagination();
 
     $scope.search = function($event) {
         if($event.which === 13) {
-            promisesService.getPage($scope.rpp, $scope.actually_page, $scope.colOrder, $scope.order, $event.target.value).then(function (data) {
+            promisesService.getPage(100, $scope.actually_page, $scope.colOrder, $scope.order, $event.target.value).then(function (data) {
                 if(data.data.message.length > 0) {
                     $scope.posts = data.data.message;
+                    $scope.pagination_active = false;
                     $scope.any_results = false;
                 } else {
+                    $scope.pagination_active = false;
                     $scope.any_results = true;
                 }
             });
         }
+    };
+
+    $scope.clearSearch = function() {
+        $scope.loadPage();
+        $scope.loadPagination();
+        $scope.search_query = "";
+        $scope.any_results = false;
+        $scope.pagination_active = true;
     };
 
     $scope.page_name = "plist"

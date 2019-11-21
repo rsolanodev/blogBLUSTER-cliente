@@ -3,7 +3,10 @@
 <div ng-if="is_ready">
     <div class="row">
         <div class="col-md-6">
-            <nav aria-label="Paginación" ng-if="pages.length > 1">
+            <div class="text-right d-flex align-items-center justify-content-end" ng-if="!pagination_active" style="height: 100%;">
+                <a href="#" ng-click="clearSearch()">Limpiar búsqueda</a>
+            </div>
+            <nav aria-label="Paginación" ng-if="pages.length > 1 && pagination_active">
                 <ul class="pagination justify-content-left">
                     <li class="page-item" ng-class="{'active':(actually_page==p)}" ng-disabled="p == '...'"
                         ng-repeat="p in pages track by $index">
@@ -39,7 +42,7 @@
         </div>
     </div>
 
-    <table class="table plist" ng-show="!any_results">
+    <table class="table plist mt-3" ng-show="!any_results">
         <thead>
         <tr>
             <th scope="col" style="width: 4vw;">
